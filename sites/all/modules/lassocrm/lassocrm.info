@@ -1,0 +1,7 @@
+name = Lasso CRM Integration Module
+description = "Provides functions and API calls for easing integration with Lasso CRM."
+core = 7.x
+package = LASSOCRM
+configure = admin/config/development/lassocrm
+
+

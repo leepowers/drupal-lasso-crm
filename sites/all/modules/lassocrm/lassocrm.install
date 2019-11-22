@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Uninstall functions for LASSOCRM module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function lassocrm_uninstall() {
+  variable_del("lassocrm_settings");
+}

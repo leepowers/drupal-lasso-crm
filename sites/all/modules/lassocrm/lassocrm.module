@@ -1,0 +1,76 @@
+<?php
+
+require_once __DIR__ . "/lib/lead.php";
+require_once __DIR__ . "/lib/api.php";
+
+/**
+ * Write to PHP error log
+ */
+function lassocrm_log() {
+	$args = func_get_args();
+	foreach ($args as $arg) {
+		$msg = print_r($arg, true);
+		error_log($msg);
+	}
+}
+
+/**
+ * Dump debug messages to front-end
+ */
+function lassocrm_dump() {
+	$args = func_get_args();
+	foreach ($args as $arg) {
+		printf("<pre>\n%s\n</pre>\n", var_export($arg, true));
+	}
+}
+
+/**
+ * Implements hook_menu().
+ */
+function lassocrm_menu() {
+
+  $items['admin/config/development/lassocrm'] = array(
+    'title'            => 'Lasso API Configuration',
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('lassocrm_settings_form'),
+    'access arguments' => array('administer lassocrm module'),
+    'description'      => 'Configure Lasso CRM API integration.',
+    'file'             => 'lassocrm.admin.inc',
+    'weight'           => 10,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function lassocrm_permission() {
+
+  $permissions['administer lassocrm module'] = array(
+    'title'           => t('Configure Lasso API'),
+    'restrict access' => TRUE,
+    'description'     => t('Users who have this permission can configure Lasso API integration settings.'),
+  );
+
+  return $permissions;
+}
+
+/**
+ * Implements hook_process_html().
+ *
+ * Add scripts on overall the site which are defined on the settings page.
+ */
+/*
+function lassocrm_process_html(&$variables) {
+
+  $lassocrm_settings = variable_get('lassocrm_settings');
+
+  if (isset($lassocrm_settings) && !empty($lassocrm_settings)) {
+    if (!empty($lassocrm_settings['embed'])) {
+      $variables['scripts'] .= $lassocrm_settings['embed'] . PHP_EOL;
+    }
+  }
+
+}
+*/
