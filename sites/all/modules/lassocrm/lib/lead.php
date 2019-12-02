@@ -36,7 +36,7 @@ class lassocrm_lead {
         'sourceType' => '',
         'secondarySourceType' => '',
         'followUpProcess' => '',
-        'contactPreference' => '',
+        'contactPreference' => 'email',
         'sendSalesRepAssignmentNotification' => false,
         'thankYouEmailTemplateId' => '',
         'addresses' => 
